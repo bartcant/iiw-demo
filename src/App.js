@@ -38,6 +38,7 @@ export class App extends Component {
         axios.post('/api/issue', bizCard).then((response) => {
             console.log(response);
             this.setState({invite_url: "https://web.cloud.streetcred.id/link/?c_i=" + response.data.invite_url});
+            console.log("invite url"+ this.state.invite_url);
         });
         this.setState({
           qr_open: true,
@@ -123,8 +124,8 @@ export class App extends Component {
                     </Paper>
                 </div>
                 <Dialog open={this.state.qr_open} onClose={() => this.setState({qr_open: false})}>
-                    <DialogTitle style={{width: "300px"}}>Scan this QR code</DialogTitle>
-                    <QRcode size="200" value={this.state.invite_url} style={{margin: "0 auto", padding: "10px"}} />
+                    <DialogTitle style={{width: "500px"}}>Scan this QR code</DialogTitle>
+                    <QRcode value={this.state.invite_url} style={{margin: "0 auto", padding: "10px"}} />
                 </Dialog>
             </div>
         )

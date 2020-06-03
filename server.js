@@ -23,7 +23,7 @@ app.get('*', function (req, res) {
 
 // WEBHOOK ENDPOINT
 app.post('/webhook', async function (req, res) {
-    try {
+        try {
         console.log("got webhook" + req + "   type: " + req.body.message_type);
         if (req.body.message_type === 'new_connection') {
                     console.log("new connection notif");
@@ -57,6 +57,7 @@ app.post('/webhook', async function (req, res) {
         }
     }
     catch (e) {
+        console.log ("Here is the problem");
         console.log(e.message || e.toString());
     }
 });
@@ -65,7 +66,6 @@ app.post('/webhook', async function (req, res) {
 app.post('/api/issue', cors(), async function (req, res) {
     const invite = await getInvite();
     const attribs = JSON.stringify(req.body);
-
     cache.add(invite.connectionId, attribs);
     res.status(200).send({ invite_url: invite.invitation });
 });
